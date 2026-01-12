@@ -1,1 +1,490 @@
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Gourmet Parisien - Restaurant Gastronomique</title>
+    <link rel="stylesheet" href="style-index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <i class="fas fa-utensils"></i>
+                    <span class="restaurant-name">Le Gourmet Parisien</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="Page_Restaurant.html" class="nav-link active">
+                    <i class="fas fa-home"></i> Accueil
+                </a></li>
+                
+                <li><a href="Reservation_Restaurant.html" class="nav-link">
+                    <i class="fas fa-calendar-alt"></i> Réservation
+                </a></li>
+                
+                <li><a href="Contact_Restaurant.html" class="nav-link">
+                    <i class="fas fa-map-marker-alt"></i> Contact
+                </a></li>
+            </ul>
+            
+            <div class="nav-contact">
+                <a href="tel:+33123456789" class="btn-phone">
+                    <i class="fas fa-phone"></i>
+                    +33 1 23 45 67 89
+                </a>
+            </div>
+            
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Hero Banner -->
+    <header class="hero">
+        <div class="hero-overlay">
+            <div class="container">
+                <h1 class="hero-title">Le Gourmet Parisien</h1>
+                <p class="hero-subtitle">Cuisine gastronomique française depuis 1985</p>
+                <a href="reservation.html" class="btn btn-primary btn-large">
+                    <i class="fas fa-calendar-check"></i> Réserver une table
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Section À propos -->
+        <section class="about-section">
+            <div class="about-content">
+                <h2 class="section-title">Notre Histoire</h2>
+                <p class="section-subtitle">Une passion familiale depuis 3 générations</p>
+                
+                <div class="about-text">
+                    <p>Fondé en 1985 par le chef étoilé Pierre Dubois, <strong>Le Gourmet Parisien</strong> perpétue la tradition de la cuisine française raffinée dans un cadre élégant et chaleureux au cœur de Paris.</p>
+                    
+                    <p>Notre philosophie : des produits frais, de saison et issus de producteurs locaux, transformés avec passion et créativité par notre chef étoilé Michel Legrand.</p>
+                    
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h4>Produits Frais</h4>
+                            <p>Approvisionnement quotidien au marché de Rungis</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-wine-glass-alt"></i>
+                            </div>
+                            <h4>Cave Sélectionnée</h4>
+                            <p>+200 références de vins français et internationaux</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h4>Reconnaissance</h4>
+                            <p>Guide Michelin 2023 • Gault & Millau 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Intérieur du restaurant">
+            </div>
+        </section>
+        
+        <!-- Section Menu du Jour -->
+        <section id="menu" class="menu-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-utensils"></i> Menu du Jour
+                </h2>
+                <p class="section-subtitle">Nos spécialités du moment</p>
+                <div class="menu-date">
+                    <i class="fas fa-calendar-day"></i>
+                    <span id="current-date">Chargement de la date...</span>
+                </div>
+            </div>
+            
+            <!-- Plats du jour -->
+            <div class="menu-du-jour">
+                <div class="plats-grid">
+                    <!-- Entrée -->
+                    <div class="plat-card">
+                        <div class="plat-category-badge">Entrée</div>
+                        <div class="plat-image">
+                            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Salade César">
+                        </div>
+                        
+                        <div class="plat-content">
+                            <div class="plat-header">
+                                <h3 class="plat-name">Salade César du Chef</h3>
+                                <span class="plat-price">12,50 €</span>
+                            </div>
+                            
+                            <p class="plat-description">Laitue romaine fraîche, croûtons maison, parmesan Reggiano 24 mois, sauce césar crémeuse, anchois de Collioure</p>
+                            
+                            <div class="plat-tags">
+                                <span class="tag du-jour">Plat du jour</span>
+                                <span class="tag">Végétarien</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plat Principal -->
+                    <div class="plat-card">
+                        <div class="plat-category-badge">Plat Principal</div>
+                        <div class="plat-image">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Bœuf Bourguignon">
+                        </div>
+                        
+                        <div class="plat-content">
+                            <div class="plat-header">
+                                <h3 class="plat-name">Bœuf Bourguignon Traditionnel</h3>
+                                <span class="plat-price">28,90 €</span>
+                            </div>
+                            
+                            <p class="plat-description">Bœuf Charolais mijoté 6 heures, lardons, petits oignons, champignons de Paris, vin rouge de Bourgogne, purée maison</p>
+                            
+                            <div class="plat-tags">
+                                <span class="tag du-jour">Plat du jour</span>
+                                <span class="tag">Signature</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dessert -->
+                    <div class="plat-card">
+                        <div class="plat-category-badge">Dessert</div>
+                        <div class="plat-image">
+                            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Tarte Tatin">
+                        </div>
+                        
+                        <div class="plat-content">
+                            <div class="plat-header">
+                                <h3 class="plat-name">Tarte Tatin aux Pommes</h3>
+                                <span class="plat-price">9,50 €</span>
+                            </div>
+                            
+                            <p class="plat-description">Pommes Golden caramélisées, pâte feuilletée croustillante, crème fraîche de Normandie, glace vanille Madagascar</p>
+                            
+                            <div class="plat-tags">
+                                <span class="tag du-jour">Plat du jour</span>
+                                <span class="tag">Maison</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Menu Complet -->
+            <div class="menu-complet">
+                <h3 class="menu-title">
+                    <i class="fas fa-book-open"></i> Notre Carte Complète
+                </h3>
+                
+                <div class="menu-categories">
+                    <!-- Entrées -->
+                    <div class="menu-category">
+                        <h4 class="category-title">
+                            <i class="fas fa-leaf"></i> Entrées
+                        </h4>
+                        <div class="plats-list">
+                            <div class="plat-item">
+                                <div class="plat-item-header">
+                                    <h5>Foie Gras Maison</h5>
+                                    <span class="price">24,50 €</span>
+                                </div>
+                                <p class="plat-item-desc">Foie gras de canard, chutney de figues, pain brioché toasté</p>
+                            </div>
+                            
+                            <div class="plat-item">
+                                <div class="plat-item-header">
+                                    <h5>Soupe à l'Oignon Gratinée</h5>
+                                    <span class="price">14,90 €</span>
+                                </div>
+                                <p class="plat-item-desc">Oignons caramélisés, bouillon de bœuf, fromage Gruyère</p>
+                            </div>
+                            
+                            <div class="plat-item">
+                                <div class="plat-item-header">
+                                    <h5>Saumon Fumé de Norvège</h5>
+                                    <span class="price">18,50 €</span>
+                                </div>
+                                <p class="plat-item-desc">Blini, crème fraîche, oignons rouges, câpres</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plats Principaux -->
+                    <div class="menu-category">
+                        <h4 class="category-title">
+                            <i class="fas fa-drumstick-bite"></i> Plats Principaux
+                        </h4>
+                        <div class="plats-list">
+                            <div class="plat-item">
+                                <div class="plat-item-header">
+                                    <h5>Magret de Canard</h5>
+                                    <span class="price">32,90 €</span>
+                                </div>
+                                <p class="plat-item-desc">Filet de canard, sauce au miel et citron, gratin dauphinois</p>
+                            </div>
+                            
+                            <div class="plat-item">
+                                <div class="plat-item-header">
+                                    <h5>Filet de Bar</h5>
+                                    <span class="price">29,50 €</span>
+                                </div>
+                                <p class="plat-item-desc">Bar de ligne, légumes de saison, beurre blanc citronné</p>
+                            </div>
+                            
+                            <div class="plat-item">
+                                <div class="plat-item-header">
+                                    <h5>Côte de Bœuf pour 2</h5>
+                                    <span class="price">68,00 €</span>
+                                </div>
+                                <p class="plat-item-desc">Côte de bœuf Angus, sauce au poivre, frites maison</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Desserts -->
+                    <div class="menu-category">
+                        <h4 class="category-title">
+                            <i class="fas fa-ice-cream"></i> Desserts
+                        </h4>
+                        <div class="plats-list">
+                            <div class="plat-item">
+                                <div class="plat-item-header">
+                                    <h5>Crème Brûlée à la Vanille</h5>
+                                    <span class="price">8,90 €</span>
+                                </div>
+                                <p class="plat-item-desc">Vanille Bourbon, sucre caramélisé</p>
+                            </div>
+                            
+                            <div class="plat-item">
+                                <div class="plat-item-header">
+                                    <h5>Fondant au Chocolat</h5>
+                                    <span class="price">10,50 €</span>
+                                </div>
+                                <p class="plat-item-desc">Cœur coulant, glace vanille, éclats de noisette</p>
+                            </div>
+                            
+                            <div class="plat-item">
+                                <div class="plat-item-header">
+                                    <h5>Assiette de Fromages Affinés</h5>
+                                    <span class="price">16,90 €</span>
+                                </div>
+                                <p class="plat-item-desc">Sélection de 5 fromages, confiture de figues, noix</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section Témoignages -->
+        <section class="testimonials-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-star"></i> Ce que disent nos clients
+                </h2>
+                <p class="section-subtitle">Découvrez les expériences de nos convives</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Une expérience gastronomique exceptionnelle ! Le service est impeccable et les plats sont divins. Nous reviendrons certainement."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Marie L.">
+                        <div>
+                            <h4>Marie Laurent</h4>
+                            <span>Dîner d'anniversaire • 15/12/2023</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Le meilleur restaurant de Paris ! Nous y venons régulièrement et la qualité est toujours au rendez-vous. Le chef est un artiste."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Thomas D.">
+                        <div>
+                            <h4>Thomas Dubois</h4>
+                            <span>Client fidèle • 22/11/2023</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="testimonial-text">"Ambiance chaleureuse, cuisine raffinée. Parfait pour une soirée en amoureux ou un dîner d'affaires. La carte des vins est impressionnante."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sophie M.">
+                        <div>
+                            <h4>Sophie Martin</h4>
+                            <span>Dîner d'affaires • 10/01/2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section CTA Réservation -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Prêt à vivre l'expérience Le Gourmet Parisien ?</h2>
+                <p>Réservez votre table dès maintenant pour une soirée gastronomique inoubliable au cœur de Paris.</p>
+                
+                <div class="cta-buttons">
+                    <a href="reservation.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-calendar-check"></i> Réserver une table
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary">
+                        <i class="fas fa-map-marker-alt"></i> Nous trouver
+                    </a>
+                </div>
+                
+                <div class="cta-info">
+                    <p>
+                        <i class="fas fa-info-circle"></i>
+                        Réservation recommandée, surtout le week-end.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Informations restaurant -->
+                <div class="footer-col">
+                    <h3><i class="fas fa-utensils"></i> Le Gourmet Parisien</h3>
+                    <p class="footer-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        123 Rue de la Gastronomie, 75008 Paris
+                    </p>
+                    <p class="footer-phone">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+33123456789">+33 1 23 45 67 89</a>
+                    </p>
+                    <p class="footer-email">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:contact@legourmetparisien.fr">contact@legourmetparisien.fr</a>
+                    </p>
+                </div>
+                
+                <!-- Horaires -->
+                <div class="footer-col">
+                    <h3><i class="fas fa-clock"></i> Horaires</h3>
+                    <p class="footer-hours">
+                        <strong>Lundi au Samedi</strong><br>
+                        12h00 - 14h30<br>
+                        19h00 - 22h30
+                    </p>
+                    <p class="footer-note">Fermé le dimanche et jours fériés</p>
+                </div>
+                
+                <!-- Navigation rapide -->
+                <div class="footer-col">
+                    <h3><i class="fas fa-link"></i> Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="reservation.html">Réservation</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#menu">Menu du jour</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Réseaux sociaux -->
+                <div class="footer-col">
+                    <h3><i class="fas fa-share-alt"></i> Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tripadvisor"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 Le Gourmet Parisien. Tous droits réservés.</p>
+                <p class="credits">Site développé avec <i class="fas fa-heart"></i> par notre équipe</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Date actuelle
+        document.addEventListener('DOMContentLoaded', function() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const date = new Date().toLocaleDateString('fr-FR', options);
+            document.getElementById('current-date').textContent = date;
+            
+            // Menu mobile
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (navToggle) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            // Navigation active
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
