@@ -3,38 +3,803 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 2 - Réservation</title>
-    <link rel="stylesheet" href="Style2.css">
+    <title>Le Gourmet Parisien - Réservation</title>
+    <link rel="stylesheet" href="Reservation_Restaurant.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
-
-    <div class="container">
-
-        <h2>Réserver une table</h2>
-
-        <form>
-
-            <label for="table">Table :</label>
-            <select id="table" name="table">
-                <option value="">-- Sélectionnez une table --</option>
-                <option value="1">Table 1</option>
-                <option value="2">Table 2</option>
-                <option value="3">Table 3</option>
-                <option value="4">Table 4</option>
-            </select>
-
-            <label for="date">Date :</label>
-            <input type="date" id="date" name="date">
-
-            <label for="personnes">Nombre de personnes :</label>
-            <input type="number" id="personnes" name="personnes" min="1" max="20">
-
-            <button type="submit">Valider la réservation</button>
-
-        </form>
-
-    </div>
-
+    <!-- Navigation (identique à l'accueil) -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <i class="fas fa-utensils"></i>
+                    <span class="restaurant-name">Le Gourmet Parisien</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="Page_Restaurant.html" class="nav-link">
+                    <i class="fas fa-home"></i> Accueil
+                </a></li>
+                
+                <li><a href="Reservation_Restaurant.html" class="nav-link active">
+                    <i class="fas fa-calendar-alt"></i> Réservation
+                </a></li>
+                
+                <li><a href="Contact_Restaurant.html" class="nav-link">
+                    <i class="fas fa-map-marker-alt"></i> Contact
+                </a></li>
+            </ul>
+            
+            <div class="nav-contact">
+                <a href="tel:+33123456789" class="btn-phone">
+                    <i class="fas fa-phone"></i>
+                    +33 1 23 45 67 89
+                </a>
+            </div>
+            
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Hero Banner spécifique à la réservation -->
+    <header class="hero-reservation">
+        <div class="hero-overlay">
+            <div class="container">
+                <h1 class="hero-title">Réservez votre table</h1>
+                <p class="hero-subtitle">Garantissez votre place pour une expérience gastronomique inoubliable</p>
+                <div class="hero-info">
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Service de 12h à 14h30 et de 19h à 22h30</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-users"></i>
+                        <span>Groupes jusqu'à 12 personnes</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-wine-glass-alt"></i>
+                        <span>Cave à vins sélectionnée</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Formulaire de réservation -->
+        <section class="reservation-section">
+            <div class="reservation-container">
+                <!-- Colonne gauche : Formulaire -->
+                <div class="reservation-form-container">
+                    <div class="form-header">
+                        <h2 class="form-title">
+                            <i class="fas fa-calendar-check"></i> Formulaire de réservation
+                        </h2>
+                        <p class="form-subtitle">Tous les champs marqués d'un <span class="required">*</span> sont obligatoires</p>
+                    </div>
+                    
+                    <!-- Messages d'alerte -->
+                    <div class="alert alert-info" id="infoAlert">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Vous recevrez une confirmation par email dans les 24 heures.</p>
+                    </div>
+                    
+                    <div class="alert alert-success" id="successAlert" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Votre réservation a été envoyée avec succès ! Un email de confirmation vous sera envoyé.</p>
+                    </div>
+                    
+                    <div class="alert alert-error" id="errorAlert" style="display: none;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p id="errorMessage"></p>
+                    </div>
+                    
+                    <!-- Formulaire -->
+                    <form id="reservationForm" class="reservation-form">
+                        <!-- Étape 1 : Informations personnelles -->
+                        <fieldset class="form-fieldset active" id="step1">
+                            <legend class="fieldset-legend">
+                                <span class="step-number">1</span>
+                                <span class="step-title">Informations personnelles</span>
+                            </legend>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nom">
+                                        Nom complet <span class="required">*</span>
+                                    </label>
+                                    <input type="text" 
+                                           id="nom" 
+                                           name="nom"
+                                           placeholder="Votre nom et prénom"
+                                           required>
+                                    <div class="form-error" id="nomError"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">
+                                        Adresse email <span class="required">*</span>
+                                    </label>
+                                    <input type="email" 
+                                           id="email" 
+                                           name="email"
+                                           placeholder="exemple@email.com"
+                                           required>
+                                    <div class="form-error" id="emailError"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="telephone">Numéro de téléphone</label>
+                                    <input type="tel" 
+                                           id="telephone" 
+                                           name="telephone"
+                                           placeholder="+33 1 23 45 67 89">
+                                    <small class="form-hint">Pour vous contacter en cas de besoin</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="personnes">
+                                        Nombre de personnes <span class="required">*</span>
+                                    </label>
+                                    <div class="personnes-selector">
+                                        <button type="button" class="personnes-btn minus" data-action="minus">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <input type="number" 
+                                               id="personnes" 
+                                               name="personnes"
+                                               min="1" 
+                                               max="12"
+                                               value="2"
+                                               readonly>
+                                        <button type="button" class="personnes-btn plus" data-action="plus">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <small class="form-hint">Maximum 12 personnes</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-next" data-next="step2">
+                                    Suivant <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </fieldset>
+                        
+                        <!-- Étape 2 : Détails de la réservation -->
+                        <fieldset class="form-fieldset" id="step2">
+                            <legend class="fieldset-legend">
+                                <span class="step-number">2</span>
+                                <span class="step-title">Détails de la réservation</span>
+                            </legend>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="date">
+                                        Date <span class="required">*</span>
+                                    </label>
+                                    <div class="date-input-container">
+                                        <input type="text" 
+                                               id="date" 
+                                               name="date"
+                                               placeholder="Sélectionnez une date"
+                                               readonly
+                                               required>
+                                        <i class="fas fa-calendar-alt date-icon"></i>
+                                    </div>
+                                    <div class="form-error" id="dateError"></div>
+                                    <small class="form-hint">Réservation possible jusqu'à 3 mois à l'avance</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="heure">
+                                        Heure <span class="required">*</span>
+                                    </label>
+                                    <div class="heure-selector">
+                                        <div class="heure-options" id="heureOptions">
+                                            <!-- Les heures seront générées par JavaScript -->
+                                        </div>
+                                        <input type="hidden" id="heure" name="heure" required>
+                                    </div>
+                                    <div class="form-error" id="heureError"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="occasion">Occasion spéciale (optionnel)</label>
+                                <select id="occasion" name="occasion">
+                                    <option value="">Choisissez une occasion</option>
+                                    <option value="anniversaire">Anniversaire</option>
+                                    <option value="mariage">Mariage / Fiançailles</option>
+                                    <option value="affaires">Dîner d'affaires</option>
+                                    <option value="famille">Repas en famille</option>
+                                    <option value="autre">Autre occasion</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-prev" data-prev="step1">
+                                    <i class="fas fa-arrow-left"></i> Précédent
+                                </button>
+                                <button type="button" class="btn btn-next" data-next="step3">
+                                    Suivant <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </fieldset>
+                        
+                        <!-- Étape 3 : Préférences et message -->
+                        <fieldset class="form-fieldset" id="step3">
+                            <legend class="fieldset-legend">
+                                <span class="step-number">3</span>
+                                <span class="step-title">Préférences et message</span>
+                            </legend>
+                            
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="fumeur" name="fumeur">
+                                    <span class="checkbox-custom"></span>
+                                    <span>Je souhaite être placé en zone fumeur (terrasse)</span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="allergie" name="allergie">
+                                    <span class="checkbox-custom"></span>
+                                    <span>Une ou plusieurs personnes ont des allergies alimentaires</span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group allergies-details" id="allergiesDetails" style="display: none;">
+                                <label for="allergies">Détail des allergies</label>
+                                <textarea id="allergies" 
+                                          name="allergies"
+                                          rows="3"
+                                          placeholder="Veuillez préciser les allergies alimentaires..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message spécial (optionnel)</label>
+                                <textarea id="message" 
+                                          name="message"
+                                          rows="4"
+                                          placeholder="Demandes particulières, cadeau, préférences..."></textarea>
+                                <small class="form-hint">Maximum 500 caractères</small>
+                                <div class="char-count">
+                                    <span id="charCount">0</span>/500 caractères
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-prev" data-prev="step2">
+                                    <i class="fas fa-arrow-left"></i> Précédent
+                                </button>
+                                <button type="submit" class="btn btn-primary btn-submit">
+                                    <i class="fas fa-paper-plane"></i> Envoyer la réservation
+                                </button>
+                            </div>
+                        </fieldset>
+                    </form>
+                    
+                    <!-- Indicateur de progression -->
+                    <div class="progress-indicator">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-steps">
+                            <div class="progress-step active" data-step="1">
+                                <span class="step-dot">1</span>
+                                <span class="step-label">Informations</span>
+                            </div>
+                            <div class="progress-step" data-step="2">
+                                <span class="step-dot">2</span>
+                                <span class="step-label">Date/Heure</span>
+                            </div>
+                            <div class="progress-step" data-step="3">
+                                <span class="step-dot">3</span>
+                                <span class="step-label">Préférences</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Colonne droite : Informations -->
+                <div class="reservation-info-container">
+                    <div class="info-card">
+                        <h3 class="info-title">
+                            <i class="fas fa-info-circle"></i> Informations importantes
+                        </h3>
+                        
+                        <div class="info-list">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Horaires de service</h4>
+                                    <p><strong>Déjeuner :</strong> 12h00 - 14h30</p>
+                                    <p><strong>Dîner :</strong> 19h00 - 22h30</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <i class="fas fa-user-clock"></i>
+                                <div>
+                                    <h4>Politique d'annulation</h4>
+                                    <p>Annulation gratuite jusqu'à 24h avant la réservation. En cas d'annulation tardive, des frais de 20€ par personne peuvent être appliqués.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <i class="fas fa-wheelchair"></i>
+                                <div>
+                                    <h4>Accessibilité</h4>
+                                    <p>Notre restaurant est entièrement accessible aux personnes à mobilité réduite. Toilettes adaptées disponibles.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <i class="fas fa-child"></i>
+                                <div>
+                                    <h4>Enfants</h4>
+                                    <p>Nous accueillons les enfants de tout âge. Menu enfant disponible sur demande. Chaise haute fournie.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <i class="fas fa-paw"></i>
+                                <div>
+                                    <h4>Animaux</h4>
+                                    <p>Les petits chiens en laisse sont acceptés uniquement sur la terrasse.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card-footer">
+                            <p>Pour toute question, contactez-nous :</p>
+                            <a href="tel:+33123456789" class="btn btn-phone">
+                                <i class="fas fa-phone"></i> +33 1 23 45 67 89
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Résumé de la réservation -->
+                    <div class="reservation-summary" id="reservationSummary">
+                        <h3 class="summary-title">
+                            <i class="fas fa-receipt"></i> Récapitulatif
+                        </h3>
+                        
+                        <div class="summary-content">
+                            <div class="summary-item">
+                                <span class="summary-label">Nom :</span>
+                                <span class="summary-value" id="summaryNom">-</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Personnes :</span>
+                                <span class="summary-value" id="summaryPersonnes">2</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Date :</span>
+                                <span class="summary-value" id="summaryDate">-</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Heure :</span>
+                                <span class="summary-value" id="summaryHeure">-</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Occasion :</span>
+                                <span class="summary-value" id="summaryOccasion">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section FAQ -->
+        <section class="faq-section">
+            <h2 class="section-title">
+                <i class="fas fa-question-circle"></i> Questions fréquentes
+            </h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Puis-je modifier ma réservation ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui, vous pouvez modifier votre réservation jusqu'à 24 heures avant la date prévue. Contactez-nous par téléphone ou par email avec votre numéro de réservation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Y a-t-il un dress code ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Un dress code chic décontracté est recommandé. Les hommes sont invités à porter une veste pour le dîner (pas de cravate obligatoire).</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Proposez-vous des menus dégustation ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui, nous proposons un menu dégustation de 7 plats (125€ par personne) et un menu végétarien de 5 plats (85€ par personne). Réservation 48h à l'avance requise.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Puis-je célébrer un anniversaire ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolument ! Indiquez-le dans le champ "Message spécial" et nous préparerons une petite attention pour l'occasion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section CTA -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Vous avez des questions spécifiques ?</h2>
+                <p>Notre équipe est à votre disposition pour vous aider à organiser votre événement spécial.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Nous contacter
+                    </a>
+                    <a href="index.html#menu" class="btn btn-secondary">
+                        <i class="fas fa-utensils"></i> Voir le menu
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer (identique à l'accueil) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Informations restaurant -->
+                <div class="footer-col">
+                    <h3><i class="fas fa-utensils"></i> Le Gourmet Parisien</h3>
+                    <p class="footer-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        123 Rue de la Gastronomie, 75008 Paris
+                    </p>
+                    <p class="footer-phone">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+33123456789">+33 1 23 45 67 89</a>
+                    </p>
+                    <p class="footer-email">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:contact@legourmetparisien.fr">contact@legourmetparisien.fr</a>
+                    </p>
+                </div>
+                
+                <!-- Horaires -->
+                <div class="footer-col">
+                    <h3><i class="fas fa-clock"></i> Horaires</h3>
+                    <p class="footer-hours">
+                        <strong>Lundi au Samedi</strong><br>
+                        12h00 - 14h30<br>
+                        19h00 - 22h30
+                    </p>
+                    <p class="footer-note">Fermé le dimanche et jours fériés</p>
+                </div>
+                
+                <!-- Navigation rapide -->
+                <div class="footer-col">
+                    <h3><i class="fas fa-link"></i> Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="reservation.html">Réservation</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html#menu">Menu du jour</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Réseaux sociaux -->
+                <div class="footer-col">
+                    <h3><i class="fas fa-share-alt"></i> Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tripadvisor"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 Le Gourmet Parisien. Tous droits réservés.</p>
+                <p class="credits">Site développé avec <i class="fas fa-heart"></i> par notre équipe</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+    <script>
+        // Code JavaScript pour la réservation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables globales
+            let currentStep = 1;
+            const totalSteps = 3;
+            
+            // Initialiser Flatpickr pour la date
+            const datePicker = flatpickr("#date", {
+                locale: "fr",
+                minDate: "today",
+                maxDate: new Date().fp_incr(90), // 3 mois
+                dateFormat: "d/m/Y",
+                disable: [
+                    function(date) {
+                        // Désactiver les dimanches
+                        return date.getDay() === 0;
+                    }
+                ]
+            });
+            
+            // Générer les options d'heure
+            generateHeureOptions();
+            
+            // Gestionnaire d'événements pour les boutons personnes
+            document.querySelectorAll('.personnes-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const action = this.getAttribute('data-action');
+                    const input = document.getElementById('personnes');
+                    let value = parseInt(input.value);
+                    
+                    if (action === 'plus' && value < 12) {
+                        value++;
+                    } else if (action === 'minus' && value > 1) {
+                        value--;
+                    }
+                    
+                    input.value = value;
+                    updateSummary();
+                });
+            });
+            
+            // Gestionnaire d'événements pour les boutons suivant/précédent
+            document.querySelectorAll('.btn-next').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const nextStep = this.getAttribute('data-next');
+                    if (validateStep(currentStep)) {
+                        goToStep(nextStep.replace('step', ''));
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.btn-prev').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const prevStep = this.getAttribute('data-prev');
+                    goToStep(prevStep.replace('step', ''));
+                });
+            });
+            
+            // Gestionnaire pour la case à cocher allergies
+            document.getElementById('allergie').addEventListener('change', function() {
+                const details = document.getElementById('allergiesDetails');
+                details.style.display = this.checked ? 'block' : 'none';
+            });
+            
+            // Compteur de caractères pour le message
+            document.getElementById('message').addEventListener('input', function() {
+                const charCount = document.getElementById('charCount');
+                charCount.textContent = this.value.length;
+                
+                if (this.value.length > 500) {
+                    this.value = this.value.substring(0, 500);
+                    charCount.textContent = 500;
+                }
+            });
+            
+            // Mettre à jour le récapitulatif en temps réel
+            document.querySelectorAll('#reservationForm input, #reservationForm select').forEach(element => {
+                element.addEventListener('change', updateSummary);
+                element.addEventListener('input', updateSummary);
+            });
+            
+            // Gestionnaire pour le formulaire
+            document.getElementById('reservationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateStep(3)) {
+                    // Simulation d'envoi
+                    document.getElementById('successAlert').style.display = 'flex';
+                    document.getElementById('infoAlert').style.display = 'none';
+                    
+                    // Réinitialiser le formulaire après 3 secondes
+                    setTimeout(() => {
+                        document.getElementById('reservationForm').reset();
+                        document.getElementById('successAlert').style.display = 'none';
+                        document.getElementById('infoAlert').style.display = 'flex';
+                        goToStep(1);
+                        updateSummary();
+                    }, 3000);
+                }
+            });
+            
+            // FAQ accordéon
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    answer.classList.toggle('active');
+                    icon.classList.toggle('fa-chevron-down');
+                    icon.classList.toggle('fa-chevron-up');
+                });
+            });
+            
+            // Menu mobile
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (navToggle) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            // Fonctions utilitaires
+            function generateHeureOptions() {
+                const container = document.getElementById('heureOptions');
+                const heures = [
+                    '12:00', '12:30', '13:00', '13:30', '14:00',
+                    '19:00', '19:30', '20:00', '20:30', '21:00', '21:30'
+                ];
+                
+                heures.forEach(heure => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'heure-option';
+                    btn.textContent = heure;
+                    btn.setAttribute('data-heure', heure);
+                    
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('.heure-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                        document.getElementById('heure').value = heure;
+                        document.getElementById('heureError').textContent = '';
+                        updateSummary();
+                    });
+                    
+                    container.appendChild(btn);
+                });
+            }
+            
+            function goToStep(stepNumber) {
+                // Masquer toutes les étapes
+                document.querySelectorAll('.form-fieldset').forEach(fieldset => {
+                    fieldset.classList.remove('active');
+                });
+                
+                // Afficher l'étape demandée
+                document.getElementById('step' + stepNumber).classList.add('active');
+                
+                // Mettre à jour l'indicateur de progression
+                document.querySelectorAll('.progress-step').forEach(step => {
+                    step.classList.remove('active');
+                });
+                
+                document.querySelector(`.progress-step[data-step="${stepNumber}"]`).classList.add('active');
+                
+                // Mettre à jour la barre de progression
+                const progressFill = document.getElementById('progressFill');
+                progressFill.style.width = ((stepNumber - 1) / (totalSteps - 1)) * 100 + '%';
+                
+                currentStep = parseInt(stepNumber);
+            }
+            
+            function validateStep(step) {
+                let isValid = true;
+                
+                // Réinitialiser les erreurs
+                document.querySelectorAll('.form-error').forEach(error => {
+                    error.textContent = '';
+                });
+                
+                if (step === 1) {
+                    const nom = document.getElementById('nom').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    
+                    if (!nom) {
+                        document.getElementById('nomError').textContent = 'Le nom est obligatoire';
+                        isValid = false;
+                    }
+                    
+                    if (!email) {
+                        document.getElementById('emailError').textContent = 'L\'email est obligatoire';
+                        isValid = false;
+                    } else if (!validateEmail(email)) {
+                        document.getElementById('emailError').textContent = 'Format d\'email invalide';
+                        isValid = false;
+                    }
+                }
+                
+                if (step === 2) {
+                    const date = document.getElementById('date').value;
+                    const heure = document.getElementById('heure').value;
+                    
+                    if (!date) {
+                        document.getElementById('dateError').textContent = 'La date est obligatoire';
+                        isValid = false;
+                    }
+                    
+                    if (!heure) {
+                        document.getElementById('heureError').textContent = 'L\'heure est obligatoire';
+                        isValid = false;
+                    }
+                }
+                
+                if (step === 3) {
+                    // Validation optionnelle pour l'étape 3
+                }
+                
+                if (!isValid) {
+                    showError('Veuillez corriger les erreurs dans le formulaire.');
+                }
+                
+                return isValid;
+            }
+            
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            function updateSummary() {
+                document.getElementById('summaryNom').textContent = 
+                    document.getElementById('nom').value || '-';
+                
+                document.getElementById('summaryPersonnes').textContent = 
+                    document.getElementById('personnes').value;
+                
+                document.getElementById('summaryDate').textContent = 
+                    document.getElementById('date').value || '-';
+                
+                document.getElementById('summaryHeure').textContent = 
+                    document.getElementById('heure').value || '-';
+                
+                const occasion = document.getElementById('occasion').value;
+                document.getElementById('summaryOccasion').textContent = 
+                    occasion ? document.getElementById('occasion').options[document.getElementById('occasion').selectedIndex].text : '-';
+            }
+            
+            function showError(message) {
+                document.getElementById('errorMessage').textContent = message;
+                document.getElementById('errorAlert').style.display = 'flex';
+                
+                setTimeout(() => {
+                    document.getElementById('errorAlert').style.display = 'none';
+                }, 5000);
+            }
+            
+            // Initialiser
+            updateSummary();
+        });
+    </script>
 </body>
 </html>
-
